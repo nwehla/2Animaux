@@ -8,12 +8,15 @@
 
 <div class="row align-items-center">
     <div class="col-2 text-center">
-        <img src="{{asset('images/'~ animal.image)}}">
+        <img src="{{asset('images/'~ animal.image)}}" class="img-fluid">
 
     </div>
     <div class="col-auto">
-        <h2>{{animal.nom}}</h2> 
+        <h2><a href="{{path('afficher_animal',{'id':animal.id})}}">{{animal.nom}}</a></a></h2> 
         <div>{{animal.description}}</div> 
+    </div>
+    <div class="col-2">
+
     </div>
 
 </div>
