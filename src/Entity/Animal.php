@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +51,16 @@ class Animal
      * @ORM\JoinColumn(nullable=false)
      */
     private $famille;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Continent::class, mappedBy="animaux")
+     */
+    private $continents;
+
+    public function __construct()
+    {
+        $this->continents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,6 +135,33 @@ class Animal
     public function setFamille(?Famille $famille): self
     {
         $this->famille = $famille;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Continent[]
+     */
+    public function getContinents(): Collection
+    {
+        return $this->continents;
+    }
+
+    public function addContinent(Continent $continent): self
+    {
+        if (!$this->continents->contains($continent)) {
+            $this->continents[] = $continent;
+            $continent->addAnimaux($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContinent(Continent $continent): self
+    {
+        if ($this->continents->removeElement($continent)) {
+            $continent->removeAnimaux($this);
+        }
 
         return $this;
     }

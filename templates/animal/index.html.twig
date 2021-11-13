@@ -7,6 +7,8 @@
 {% for animal in animaux %}
 
 <div class="row align-items-center">
+    
+    
     <div class="col-2 text-center">
         <img src="{{asset('images/'~ animal.image)}}" class="img-fluid">
 
@@ -15,8 +17,8 @@
         <h2><a href="{{path('afficher_animal',{'id':animal.id})}}">{{animal.nom}}</a></a></h2> 
         <div>{{animal.description}}</div> 
     </div>
-    <div class="col-2">
-
+    <div class="col-6 text-center">
+        <h2 class="border-bottom border-primary"><a href="{{path('affiche_famille',{'id':animal.famille.id})}}">{{animal.famille.libele|capitalize}}</a></h2> 
     </div>
 
 </div>
