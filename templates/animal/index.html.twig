@@ -20,6 +20,11 @@
     <div class="col-6 text-center">
         <h2 class="border-bottom border-primary"><a href="{{path('affiche_famille',{'id':animal.famille.id})}}">{{animal.famille.libele|capitalize}}</a></h2> 
     </div>
+    <div class="col-1 text-center">
+        {% for continent in animal.continents %}
+        <h2 class="btn btn-warning"><a href="#">{{continent.libelle}}</a></h2>
+        {% endfor %}
+    </div>
 
 </div>
 

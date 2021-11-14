@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}les continents{% endblock %}
+{% block montitre %}liste des Continents{% endblock %}
+
+
+{% block body %}
+{% for continent in continents %}
+
+<div class="row align-items-center">
+    <div class="col-2">
+    <div class='border-bottom border-primary'><h2>{{continent.libelle}}</h2></div>
+</div>
+<div class="col">
+    {% for animal in continent.animaux %}
+    <div class="align-items-center">
+        <div class="col-2 text-center">
+            <img src="{{asset('images/'~ animal.image)}}" class="img-fluid">
+    
+        </div>
+        <div class="col-2">
+            <h2><a href="{{path('afficher_animal',{'id':animal.id})}}">{{animal.nom}}</a></a></h2> 
+           
+        </div>
+        <div class="col-2">
+            <h2 >{{animal.description}}
+            </h2>
+        </div>
+    
+    </div>
+    {% endfor %}
+</div> 
+
+    
+    
+{% endfor %}
+</div>
+{% endblock %}

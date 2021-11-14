@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Animal;
 use App\Entity\Famille;
+use App\Entity\Continent;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -11,6 +12,22 @@ class AnimalFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $b1= new Continent();
+         $b1->setLibelle("Afrique");
+           $manager->persist($b1);
+        
+        $b2= new Continent();
+         $b2->setLibelle("Europe");
+           $manager->persist($b2);
+        
+        $b3= new Continent();
+         $b3->setLibelle("Amerique");
+           $manager->persist($b3);
+        
+        $b4= new Continent();
+         $b4->setLibelle("Oceanie");
+           $manager->persist($b4);
+        
         $c1=new Famille();
         $c1->setLibele("Mamifères")
         ->setDescription("Animaux nourrissant leurs petits avec leur lait");
@@ -32,7 +49,14 @@ class AnimalFixtures extends Fixture
         ->setPoids(10)
         ->setDangereux(false)
         ->setFamille($c1)
-        ;
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b4)
+        ->addContinent($b2)
+        ->addContinent($b1);
+    
         $manager->persist($a1);
 
         
@@ -43,8 +67,12 @@ class AnimalFixtures extends Fixture
         ->setPoids(2)
         ->setDangereux(false)
         ->setFamille($c3)
-
-        ;
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b4)
+        ->addContinent($b2)
+        ->addContinent($b1);
         $manager->persist($a2);
 
         
@@ -55,8 +83,12 @@ class AnimalFixtures extends Fixture
         ->setPoids(300)
         ->setDangereux(true)
         ->setFamille($c2)
-
-        ;
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b3)
+        ->addContinent($b4)
+        ->addContinent($b2)
+        ->addContinent($b1);
         $manager->persist($a3);
 
         $a4 = new Animal(); 
@@ -66,8 +98,8 @@ class AnimalFixtures extends Fixture
         ->setPoids(2)
         ->setDangereux(false)
         ->setFamille($c3)
-
-        ;
+        ->addContinent($b4)
+        ->addContinent($b1);
         $manager->persist($a4);
 
         $manager->flush();
